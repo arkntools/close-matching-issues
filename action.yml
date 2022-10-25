@@ -17,5 +17,5 @@ outputs:
   num:
     description: A number of how much issues was closed
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
