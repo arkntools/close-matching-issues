@@ -12,7 +12,7 @@ steps:
     with:
       query: 'label:weekly-issue'
       token: ${{ secrets.GITHUB_TOKEN }}
-      comment: 'closed by [${{ github.run_id }})](../actions/runs/${{ github.run_id }})'
+      comment: 'closed by [${{ github.run_id }}](../actions/runs/${{ github.run_id }})'
 ```
 
 ### Inputs
