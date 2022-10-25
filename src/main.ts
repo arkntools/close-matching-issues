@@ -26,9 +26,14 @@ query($searchQuery: String!) {
 
 async function closeIssues(octokit: GitHubClient, numbers: Array<number>) {
   const context = github.context
+  const comment = core.getInput('comment')
 
   return numbers.map(async (number) => {
     core.info(`Close https://github.com/${formatNameWithOwner(context.repo)}/issues/${number}`)
+
+    if (comment) {
+      await octokit.issues.createComment({ ...context.repo, issue_number: number, body: comment })
+    }
 
     return octokit.issues.update({ ...context.repo, issue_number: number, state: 'closed' })
   })
@@ -76,7 +81,7 @@ async function run() {
 
     core.setOutput('num', String(issueNumbers.length))
     core.info(`Issues: ${issueNumbers}`)
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message)
   }
 }

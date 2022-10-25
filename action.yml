@@ -10,6 +10,9 @@ inputs:
   query:
     description: Query to use to search for matching issues
     required: true
+  comment:
+    description: Comment when close issues
+    required: false
 outputs:
   num:
     description: A number of how much issues was closed
